@@ -33,10 +33,9 @@ class ResultsViewController: UIViewController {
         resultTextLabel.text = resultAnimal.definition
     }
     
-    func sortAnswers(_: Array<Answer>) -> AnimalType {
+    func sortAnswers(_: Array<Answer>) {
         resultAnimal = Dictionary(grouping: resultSurvey, by: { $0.type })
             .sorted(by: {$0.value.count > $1.value.count})
             .first?.key
-        return resultAnimal
     }
 }
