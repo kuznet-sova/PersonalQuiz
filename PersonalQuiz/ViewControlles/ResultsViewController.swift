@@ -19,7 +19,7 @@ class ResultsViewController: UIViewController {
     @IBOutlet var resultTextLabel: UILabel!
     
     var resultSurvey: [Answer] = []
-    var resultAnimal: AnimalType!
+    var resultAnimal: AnimalType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +29,11 @@ class ResultsViewController: UIViewController {
 
     func result() {
         sortAnswers(resultSurvey)
-        resultEmojiLabel.text = "Вы - \(resultAnimal.rawValue)"
-        resultTextLabel.text = resultAnimal.definition
+        resultEmojiLabel.text = "Вы - \(resultAnimal!.rawValue)"
+        resultTextLabel.text = resultAnimal!.definition
     }
     
-    func sortAnswers(_: Array<Answer>) {
+    func sortAnswers(_: [Answer]) {
         resultAnimal = Dictionary(grouping: resultSurvey, by: { $0.type })
             .sorted(by: {$0.value.count > $1.value.count})
             .first?.key
